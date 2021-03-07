@@ -28,6 +28,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'via_sms' => $this->faker->boolean(),
+            'via_email' => $this->faker->boolean(),
+            'via_push' => $this->faker->boolean()
         ];
     }
 
@@ -41,6 +44,24 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'email_verified_at' => null,
+            ];
+        });
+    }
+
+    public function seller()
+    {
+        return $this->state(function (array $attributes){
+            return [
+                'user_type_id' => 2
+            ];
+        });
+    }
+
+    public function buyer()
+    {
+        return $this->state(function (array $attributes){
+            return [
+                'user_type_id' => 1
             ];
         });
     }

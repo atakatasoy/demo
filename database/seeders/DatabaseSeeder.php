@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Report;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // User::factory()->count(40)->seller()->create();
+        // User::factory()->count(500)->buyer()->create();
+        $factory = Report::factory();
+
+        $factory->count(40)->seller()->dailyReport()->create();
+        $factory->count(40)->seller()->weeklyReport()->create();
+        $factory->count(40)->seller()->monthlyReport()->create();
+        $factory->count(500)->buyer()->monthlyReport()->create();
     }
 }
