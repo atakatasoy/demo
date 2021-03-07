@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Core\Exceptions\InvalidFactoryArgumentException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -36,6 +37,13 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (Throwable $e){
+            switch(true){
+                case $e instanceof InvalidFactoryArgumentException:
+                    return response()->json(['message' => 'Invalid Argument'], 400);
+            }
         });
     }
 }
