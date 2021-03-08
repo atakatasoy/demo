@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory()->count(40)->seller()->create();
-        // User::factory()->count(500)->buyer()->create();
-        $factory = Report::factory();
-
+        $userFactory = User::factory();
+        $userFactory->count(40)->seller()->create();
+        $userFactory->count(500)->buyer()->create();
+        
+        $reportFactory = Report::factory();
         $factory->count(40)->seller()->dailyReport()->create();
         $factory->count(40)->seller()->weeklyReport()->create();
         $factory->count(40)->seller()->monthlyReport()->create();
