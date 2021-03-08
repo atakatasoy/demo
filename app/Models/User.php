@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Report;
+use App\Models\Sale;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,20 @@ class User extends Authenticatable
     public function reports()
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function userType()
+    {
+        return $this->hasOne(UserType::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class, 'seller_id');
+    }
+
+    public function buys()
+    {
+        return $this->hasMany(Sale::class, 'buyer_id');
     }
 }
