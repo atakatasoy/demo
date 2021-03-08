@@ -20,7 +20,7 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('buyer_id');
             $table->decimal('price');
             $table->integer('quantity');
-            $table->datetime('sold_at');
+            $table->string('sold_at');
             $table->timestamps();
 
             $table->foreign('seller_id')
